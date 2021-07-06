@@ -26,4 +26,7 @@ def results(request, question_id):
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
 
+def add(request):
+    return HttpResponse("Not made yet.")
+
 
