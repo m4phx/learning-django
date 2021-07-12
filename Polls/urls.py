@@ -8,7 +8,7 @@ urlpatterns = [
     path('<int:question_id>/', views.detail, name='detail'),
     path('<int:question_id>/results/', views.results, name='results'),
     path('<int:question_id>/vote/', views.vote, name='vote'),
-    path('addPoll/', views.add, name='addPoll'),
+    path('add', views.create_item, name='create_item'),
 ]
 
-# Pelo visto, url deve ser o mesmo da view/html
+# Pelo visto, url deve ser o mesmo da view

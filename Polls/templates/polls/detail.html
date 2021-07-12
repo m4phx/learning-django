@@ -1,4 +1,5 @@
 {% extends 'polls/base.html' %}
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +10,14 @@
 
     {% block body %}
 
-        <h1>{{ question.question_text }}</h1>
-        <ul>
+        <h1 href="{% url 'Polls:index' %}">{{ question.question_text }}</h1>
+        {% csrf_token %}
         {% for choice in question.choice_set.all %}
-          <li>{{ choice.choice_text }}</li>
+<!--          <li>{{ choice.choice_text }}</li>-->
+           <li> {% bootstrap_field choice.choice_text  %} </li>
+
         {% endfor %}
-        </ul>
+
 
     {% endblock %}
 
