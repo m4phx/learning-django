@@ -38,8 +38,24 @@ def create_item(request):
         form.save()
         return redirect('Polls:index')
 
-
     # context = {'form': form }
-
     return render(request, 'polls/item-form.html', {'form': form })
     # return HttpResponse("Not made yet.")
+
+def update_item(request, question_id):
+    question = Question.objects.get(id=question_id)
+    form = ItemForm(request.POST or None, instance=question)
+
+    if form.is_valid():
+        form.save()
+        return redirect('Polls:index')
+
+    context = {'form': form, 'question': question}
+    return render(request, 'Polls/item-form.html', context)
+
+def delete_item(request, question_id):
+    question = Question.objects.get(id=question_id)
+
+    if request.method == 'POST':
+        question.delete()
+        return redirect('food:index')
