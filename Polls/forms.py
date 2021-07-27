@@ -1,37 +1,14 @@
 import self as self
 from django import forms
-from .models import Question
+from .models import Question, Choice
 
 
 class ItemForm(forms.ModelForm):
     question_text = forms.CharField(max_length=200)
 
-    pub_date = forms.DateField(required=False, input_formats=[
-        '%Y-%m-%d',
-        '%m/%d/%Y',
-        '%m/%d/%y',
-        '%d/%m/%Y', ],
-    )
-
     class Meta:
         model = Question
-        # fields = '__all__'
         fields = ('question_text',)
-        # , 'pub_date']
-        # widgets = {
-        #     'question_text': forms.TextInput(attrs={'class': 'question_text_class'}),
-        #     'pub_date': forms.TextInput(attrs={'class': 'pub_date_class'}),
-        # }
-
-
-
-
-
-
-
-
-
-
 
 
     #

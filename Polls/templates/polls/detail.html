@@ -4,21 +4,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Polls baby - Detail</title>
+    {% block titulo %}<title>Polls baby - Detail</title> {% endblock %}
 </head>
 <body>
 
     {% block body %}
 
-        <h1 href="{% url 'Polls:index' %}">{{ question.question_text }}</h1>
-        {% csrf_token %}
-        {% for choice in question.choice_set.all %}
-<!--          <li>{{ choice.choice_text }}</li>-->
-           <li> {% bootstrap_field choice.choice_text  %} </li>
-
-        {% endfor %}
-
-
+    <form action="{% url 'Polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+        <fieldset>
+            <legend><h1>{{ question.question_text }}</h1></legend>
+            {% if question.choice_set.all %}
+                {% for choice in question.choice_set.all %}
+                        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                        <li> {% bootstrap_field choice.choice_text  %} </li>
+                {% endfor %}
+            {% else %}
+                <p>No choices are available.</p>
+                {% if error_message %}
+                    <p>{{ error_message }}</p>
+                {% endif %}
+            {% endif %}
+        </fieldset>
+        <input type="submit" value="Vote">
+    </form>
     {% endblock %}
 
 </body>

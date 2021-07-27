@@ -12,5 +12,3 @@ urlpatterns = [
     path('update/<int:question_id>/', views.update_item, name='update_item'),
     path('delete/<int:id>/', views.delete_item, name='delete_item'),
 ]
-
-# Pelo visto, url deve ser o mesmo da view

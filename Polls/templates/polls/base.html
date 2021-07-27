@@ -36,6 +36,28 @@
 
     </div>
 
+    {% if form.errors %}
+        <div class="col-lg-12">
+        <div class="alert alert-outline alert-success alert-dismissible fade show d-flex align-items-center"
+             role="alert" id="message">
+            <i data-feather="alert-circle" class="mg-r-10"></i> {{ form.errors }}
+        </div>
+       </div>
+    {% endif %}
+    {% if messages %}
+    <div class="col-lg-12">
+        <div class="alert alert-outline alert-success alert-dismissible fade show d-flex align-items-center"
+             role="alert" id="message">
+            {% for message in messages %}
+                <i data-feather="alert-circle" class="mg-r-10"></i> {{ message }}
+            {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&bigotimes;</span>
+            </button>
+        </div>
+    </div>
+    {% endif %}
+
     {% endblock %}
 
 
