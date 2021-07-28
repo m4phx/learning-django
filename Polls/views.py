@@ -1,30 +1,52 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.views import generic
 
 from .models import Question, Choice
 from .forms import ItemForm
 
 
 # Create your views here.
-def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    context = {
-        'latest_question_list': latest_question_list
-    }
-    return render(request, 'polls/index.html', context)
-    # return HttpResponse("Pooooooooooooooooooooolls")
+class index(generic.ListView):
+    template_name = 'Polls/index.html'
+    context_object_name = 'latest_question_list'
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Question.objects.order_by('-pub_date')
+
+class detail(generic.DetailView):
+    model = Question
+    template_name = 'Polls/detail.html'
+
+    # How to pass aditional context data
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['var'] = Choice.objects.filter(pk=pk)
 
 
-def detail(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    choices = question.choice_set.all()
-    context = {
-        'question': question,
-        'choices': choices,
-    }
-    return render(request, 'polls/detail.html', context)
-    # return HttpResponse("You are looking at question %s." % question_id)
+ ###################### Regular views ###################
+
+
+# def index(request):
+#     latest_question_list = Question.objects.order_by('-pub_date')[:5]
+#     context = {
+#         'latest_question_list': latest_question_list
+#     }
+#     return render(request, 'polls/index.html', context)
+#     # return HttpResponse("Pooooooooooooooooooooolls")
+
+# def detail(request, question_id):
+#     question = get_object_or_404(Question, pk=question_id)
+#     choices = question.choice_set.all()
+#     context = {
+#         'question': question,
+#         'choices': choices,
+#     }
+#     return render(request, 'polls/detail.html', context)
+#     # return HttpResponse("You are looking at question %s." % question_id)
 
 
 def results(request, question_id):
