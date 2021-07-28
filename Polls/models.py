@@ -1,5 +1,6 @@
 import datetime
 
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.utils import timezone
 
@@ -10,11 +11,9 @@ class Question(models.Model):
                                     null=True,
                                     blank=True,
                                     )
-    # pub_date = models.
-
-    # pub_date.input_formats = ['%Y-%m-%d',
-    #                           '%m/%d/%Y',
-    #                           '%m/%d/%y']
+    pub_date.input_formats = ['%Y-%m-%d',
+                              '%m/%d/%Y',
+                              '%m/%d/%y']
 
     def __str__(self):
         return self.question_text
