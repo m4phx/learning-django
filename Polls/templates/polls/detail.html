@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {% block titulo %}<title>Polls baby - Detail</title> {% endblock %}
+    {% block titulo %}Detail{% endblock %}
 </head>
 <body>
 
@@ -28,8 +28,9 @@
                 {% endif %}
             {% endif %}
         </fieldset>
-        <input type="submit" value="Vote">
+        <input type="submit" class="btn btn-light" value="Vote">
     </form>
+    <a href="{% url 'Polls:delete_item' question.id %}" class="btn btn-danger">Delete</a>
     {% endblock %}
 
 </body>

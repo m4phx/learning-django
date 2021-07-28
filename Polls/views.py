@@ -75,3 +75,5 @@ def delete_item(request, question_id):
     if request.method == 'POST':
         question.delete()
         return redirect('food:index')
+
+    return render(request, 'Polls/item-delete.html', {'question': question})

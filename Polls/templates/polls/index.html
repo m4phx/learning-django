@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width", initial-scale="1.0">
-    {% block titulo %} <title> Polls baby </title> {% endblock %}
+    {% block titulo %}Principal{% endblock %}
 </head>
 <body>
 
@@ -15,7 +15,7 @@
         {% for question in latest_question_list %}
             <li>
                 <div class="text-right mb-3">
-                    <a href="{% url 'Polls:detail' question.id %}" class="col-4">{{ question.question_text }}</a>
+                    <a href="{% url 'Polls:detail' question.id %}" class="col-4">Pergunta: {{ question.question_text }}</a>
                     <a href="{% url 'Polls:update_item' question.id %}" type="button" class="btn btn-info btn-sm">Edit</a>
                 </div>
             </li>
